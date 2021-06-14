@@ -5,7 +5,7 @@ module Finicity
       def self.create(username:, first_name:, last_name:)
         request(
           :post,
-          "/aggregation/v1/customers/#{Finicity.configs.app_type}",
+          "/aggregation/v2/customers/#{Finicity.configs.app_type}",
           body: { username: username, firstName: first_name, lastName: last_name }
         )
       end
