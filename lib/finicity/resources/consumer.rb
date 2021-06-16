@@ -38,7 +38,7 @@ module Finicity
         # Only needed when type == 'lite'
         body[:institutionId] = institution_id if institution_id
 
-        request(:post, '/connect/v1/generate', body: body)
+        request(:post, '/connect/v2/generate', body: body)
       end
     end
   end
