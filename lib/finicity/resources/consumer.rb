@@ -24,14 +24,16 @@ module Finicity
         redirect_uri:,
         webhook: nil,
         webhook_content_type: nil,
-        institution_id: nil
+        institution_id: nil,
+        is_iframe: false
       )
         body = {
           customerId: customer_id.to_s,
           partnerId: partner_id.to_s,
-          type: type,
-          redirectUri: redirect_uri
+          type: type
         }
+
+        body[:redirectUri] = redirect_uri if is_iframe
         body[:webhook] = webhook if webhook
         body[:webhookContentType] = webhook_content_type if webhook_content_type
 
