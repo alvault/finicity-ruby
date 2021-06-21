@@ -20,7 +20,7 @@ module Finicity
       #      )
       def get_connect_link(
         partner_id:,
-        type:,
+        type:nil,
         redirect_uri:,
         webhook: nil,
         webhook_content_type: nil,
@@ -29,10 +29,10 @@ module Finicity
       )
         body = {
           customerId: customer_id.to_s,
-          partnerId: partner_id.to_s,
-          type: type
+          partnerId: partner_id.to_s
         }
 
+        body[:type] = type if type
         body[:redirectUri] = redirect_uri if is_iframe
         body[:webhook] = webhook if webhook
         body[:webhookContentType] = webhook_content_type if webhook_content_type
