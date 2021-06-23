@@ -25,11 +25,13 @@ module Finicity
         webhook: nil,
         webhook_content_type: nil,
         institution_id: nil,
-        is_iframe: false
+        is_iframe: false,
+        experience: "default"
       )
         body = {
           customerId: customer_id.to_s,
-          partnerId: partner_id.to_s
+          partnerId: partner_id.to_s,
+          experience: experience
         }
 
         body[:type] = type if type
