@@ -24,7 +24,7 @@ module Finicity
         redirect_uri:,
         webhook: nil,
         webhook_content_type: nil,
-        institution_id: nil,
+        institution_settings: nil,
         is_iframe: false,
         experience: "default"
       )
@@ -39,8 +39,7 @@ module Finicity
         body[:webhook] = webhook if webhook
         body[:webhookContentType] = webhook_content_type if webhook_content_type
 
-        # Only needed when type == 'lite'
-        body[:institutionId] = institution_id if institution_id
+        body[:institutionSettings] = institution_settings if institution_settings
 
         request(:post, '/connect/v2/generate', body: body)
       end
