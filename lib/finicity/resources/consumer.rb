@@ -34,7 +34,6 @@ module Finicity
           experience: experience
         }
 
-        body[:type] = type if type
         body[:redirectUri] = redirect_uri if is_iframe
         body[:webhook] = webhook if webhook
         body[:webhookContentType] = webhook_content_type if webhook_content_type
