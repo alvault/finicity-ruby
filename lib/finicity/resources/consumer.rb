@@ -26,7 +26,8 @@ module Finicity
         webhook_content_type: nil,
         institution_id: nil,
         is_iframe: false,
-        experience: "default"
+        experience: "default",
+        institution_login_id: nil
       )
         body = {
           customerId: customer_id.to_s,
@@ -41,6 +42,8 @@ module Finicity
         # Only needed when type == 'lite'
         body[:institutionId] = institution_id if institution_id && type == 'lite'
 
+        body[:institutionLoginId] = institution_login_id if institution_login_id && type == 'fix'
+        
         request(:post, "/connect/v2/generate/#{type}", body: body)
       end
     end
