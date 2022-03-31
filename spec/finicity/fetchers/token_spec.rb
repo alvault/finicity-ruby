@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Finicity::Fetchers::Token do
   let(:response) { Hashie::Mash.new(body: nil) }
-  let(:redis) { { "finicity-token-expires-at" => expires_at, "finicity-token" => token } }
+  let(:redis) { FakeRedis.new({ "finicity-token-expires-at" => expires_at, "finicity-token" => token }) }
   let(:expires_at) { nil }
   let(:configs) { double(:configs, partner_id: "ID1234", partner_secret: "Secret134", redis: redis) }
 
@@ -57,8 +57,8 @@ describe Finicity::Fetchers::Token do
       before { subject }
 
       it { expect(described_class).to have_received(:request).with(method, endpoint, body: body) }
-      it { expect(redis["finicity-token"]).to eq("JuebgKb1pab") }
-      it { expect(Time.parse(redis["finicity-token-expires-at"]).future?).to be_truthy }
+      it { expect(redis.get "finicity-token").to eq("JuebgKb1pab") }
+      it { expect(Time.parse(redis.get "finicity-token-expires-at").future?).to be_truthy }
     end
 
     context "failed response" do

@@ -7,3 +7,5 @@ require 'simplecov'
 
 SimpleCov.start
 # SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
+Dir["./spec/support/*.rb"].each { |file| require file }

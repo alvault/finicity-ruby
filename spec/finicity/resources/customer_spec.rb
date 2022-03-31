@@ -7,7 +7,7 @@ describe Finicity::Resources::Customer do
 
   describe ".create" do
     let(:method) { :post }
-    let(:endpoint) { "/aggregation/v1/customers/testing" }
+    let(:endpoint) { "/aggregation/v2/customers/testing" }
     let(:body) { { firstName: 'Test', lastName: 'User', username: '3137023c8d12' } }
     let(:configs) { double(:configs, app_type: :testing) }
 
